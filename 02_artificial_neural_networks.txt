@@ -1,0 +1,71 @@
+Q: What is an artificial neural network?
+A: A network of interconnected artificial neurons that processes information, inspired by the biological brain
+
+Q: What does an artificial neuron compute?
+A: A weighted sum of its inputs (plus bias), then passes it through an activation function
+
+Q: What is the role of the bias in a neuron?
+A: It shifts the activation function, allowing it to trigger more or less easily
+
+Q: What is a Multi-Layer Perceptron (MLP)?
+A: A feed-forward neural network with an input layer, one or more hidden layers, and an output layer, fully connected
+
+Q: How does an ANN learn?
+A: Training data are passed forward, the loss is computed, and weights are adjusted backward to reduce the error
+
+Q: What is overfitting?
+A: When a model fits the training data too closely and fails to generalize to new data
+
+Q: What is underfitting?
+A: When a model is too simple to capture the training data or generalize
+
+Q: How do you detect overfitting vs underfitting?
+A: Overfitting: low training error but high validation error. Underfitting: high training error
+
+Q: How do you address overfitting?
+A: Increase training data or reduce model complexity
+
+Q: How do you address underfitting?
+A: Increase model complexity or train longer
+
+Q: What is data augmentation?
+A: Techniques that expand the training set by generating modified copies of existing data
+
+Q: Why are activation functions necessary?
+A: They introduce non-linearity, allowing the network to model complex functions
+
+Q: What is the sigmoid function used for?
+A: Squashing outputs into [0,1], useful for probabilities, but suffers from vanishing gradients
+
+Q: What is the tanh function?
+A: A zero-centered activation that maps inputs to [−1,1], but still suffers from vanishing gradients
+
+Q: What is ReLU?
+A: ReLU(x) = max(x, 0); efficient and widely used, but can suffer from dead neurons
+
+Q: What problem does Leaky ReLU solve?
+A: The dying ReLU problem, by allowing a small gradient for negative inputs
+
+Q: What is softmax used for?
+A: Converting a vector of outputs into a probability distribution for multi-class classification
+
+Q: What is a loss function?
+A: A function that measures how far the model's prediction is from the true value
+
+Q: What is the difference between loss and cost function?
+A: Loss is for a single example; cost is the average loss over the dataset
+
+Q: When is MSE (square error) used?
+A: For regression; penalizes large errors heavily but is sensitive to outliers
+
+Q: When is MAE (absolute error) used?
+A: For regression; more robust to outliers but harder to optimize
+
+Q: What is Huber loss?
+A: A regression loss that behaves like MSE for small errors and like MAE for large ones, combining their strengths
+
+Q: When is cross-entropy loss used?
+A: For classification problems (binary or multi-class)
+
+Q: What is focal loss for?
+A: A classification loss that focuses training on hard examples by down-weighting easy ones

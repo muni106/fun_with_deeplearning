@@ -1,0 +1,113 @@
+Q: How is a vector denoted notationally?
+A: Bold-faced, lower-cased letter (e.g., x)
+
+Q: What does x ∈ ℝⁿ mean?
+A: x is a vector of n real-valued scalars
+
+Q: How are matrices and tensors denoted notationally?
+A: Bold-faced, capital letters (e.g., X)
+
+Q: What does A ∈ ℝᵐˣⁿ mean?
+A: A is a matrix with m rows and n columns
+
+Q: What is a tensor?
+A: An n-dimensional array with an arbitrary number of axes
+
+Q: What order tensors are vectors and matrices?
+A: Vectors are first-order tensors; matrices are second-order tensors
+
+Q: How is a color (RGB) image represented as a tensor?
+A: A 3-axis tensor: height, width, and channel
+
+Q: What does the transpose of a matrix do?
+A: Flips the matrix over its diagonal, exchanging rows and columns
+
+Q: If A ∈ ℝᵐˣⁿ, what shape is Aᵀ?
+A: n × m
+
+Q: What is the result shape of an element-wise operation between two tensors?
+A: The same shape as the input tensors (which must be identical)
+
+Q: What is the Hadamard product?
+A: Element-wise multiplication of two tensors of identical shape
+
+Q: For matrix product C = AB, what dimension constraint must hold?
+A: Number of columns in A must equal number of rows in B
+
+Q: If A ∈ ℝᵐˣᵏ and B ∈ ℝᵏˣⁿ, what shape is AB?
+A: m × n
+
+Q: How is element c_ij of the matrix product C = AB computed?
+A: c_ij = Σₜ a_it · b_tj
+
+Q: What does the dot product of two vectors return?
+A: A scalar equal to the sum of products of corresponding elements
+
+Q: What does a vector norm map a vector to?
+A: A scalar representing the vector's magnitude
+
+Q: What is the formula for the Lₚ norm of a vector x?
+A: ||x||_p = (Σ |xᵢ|ᵖ)^(1/p)
+
+Q: Which norm is the Euclidean distance?
+A: The L₂ norm
+
+Q: What is the Frobenius norm of a matrix?
+A: Square root of the sum of the squares of all matrix elements
+
+Q: Why are derivatives important in deep learning?
+A: They tell us how the loss changes when we adjust each parameter slightly
+
+Q: What is the derivative of a constant?
+A: 0
+
+Q: What is the power rule?
+A: ∂/∂x (xⁿ) = n · xⁿ⁻¹
+
+Q: What is the derivative of eˣ?
+A: eˣ
+
+Q: What is the derivative of ln(x)?
+A: 1/x
+
+Q: State the sum rule for derivatives.
+A: ∂/∂x (f(x) + g(x)) = ∂f/∂x + ∂g/∂x
+
+Q: State the product rule.
+A: ∂/∂x (f(x)·g(x)) = f(x)·∂g/∂x + ∂f/∂x·g(x)
+
+Q: State the chain rule.
+A: ∂/∂x f(g(x)) = ∂f/∂g(x) · ∂g/∂x
+
+Q: How do you compute a partial derivative with respect to xᵢ?
+A: Treat all other variables as constants and differentiate with respect to xᵢ
+
+Q: What is the gradient of a function f: ℝⁿ → ℝ?
+A: A vector containing all n partial derivatives of f
+
+Q: What is the Jacobian matrix?
+A: The matrix of all partial derivatives of a multivariate vector function
+
+Q: For f: ℝⁿ → ℝᵐ, what shape is the Jacobian?
+A: m × n
+
+Q: How do you interpret a partial derivative intuitively?
+A: It is the sensitivity of the function around its current value
+
+Q: To increase the output of a function, how should you change a variable with a positive partial derivative?
+A: Increase it
+
+Q: To increase the output of a function, how should you change a variable with a negative partial derivative?
+A: Decrease it
+
+Q: What is automatic differentiation?
+A: A set of techniques to numerically evaluate the exact derivative of a function specified by a computer program
+
+Q: What are the two phases of reverse-mode automatic differentiation?
+A: Forward phase (decompose into a computational graph and evaluate) and reverse phase (apply chain rule from outputs to inputs)
+
+Q: What happens during the forward phase of automatic differentiation?
+A: The function is decomposed into primitive operators via a computational graph and each output is computed
+
+Q: What happens during the reverse phase of automatic differentiation?
+A: Partial derivatives of the output w.r.t. all inputs are calculated by applying the chain rule from outputs back to inputs

@@ -1,0 +1,65 @@
+Q: In the weight update w' = w − η·∂E/∂w, why is the gradient *subtracted*?
+A: The gradient points in the direction of steepest ascent of the error; subtracting it moves the weight downhill on the error surface.
+
+Q: During the backward pass, each operator combines two quantities to send a gradient upstream — which two?
+A: Its **local gradient** (∂output/∂input) and the **incoming sensitivity** from downstream (∂final_out/∂its_output), multiplied via the chain rule.
+
+Q: Derivative of the sigmoid σ(x) = 1/(1+e^−x)?
+A: ∂σ/∂x = (1 − σ(x))·σ(x)
+
+Q: What is the local gradient of an **add** gate with respect to each input, and what does that imply for backprop?
+A: 1 — so the upstream gradient is copied unchanged to every input.
+
+Q: For a **multiply** gate z = x·y, what is ∂z/∂x?
+A: y — i.e., the value of the *other* input (captured during the forward pass).
+
+Q: For an artificial neuron with net = Σ wᵢ·inᵢ and out = f(net), what is ∂out/∂wᵢ?
+A: (∂f/∂net) · inᵢ
+
+Q: For the same neuron, what is ∂out/∂inᵢ?
+A: (∂f/∂net) · wᵢ
+
+Q: Why is grouping the four sub-operators of a sigmoid into a single node worthwhile during backprop?
+A: You can apply the closed-form derivative (1−σ)·σ in one step instead of chaining four local gradients — same answer, fewer operations.
+
+Q: For squared error E = (y − ŷ)², what gradient flows into the output neuron from the loss?
+A: ∂E/∂ŷ = −2(y − ŷ)
+
+Q: In matrix-form forward pass, the pre-activation of layer l is s_l = ⟨cloze⟩.
+A: s_l = W_l · a_{l−1}
+
+Q: In matrix backprop, how is δ_L computed at the output layer?
+A: δ_L = (∂E/∂a_L) ⊙ (∂a_L/∂s_L) — Hadamard product of the loss gradient w.r.t. activations and the activation derivative.
+
+Q: How does δ_l propagate from layer l+1 back to a hidden layer l?
+A: δ_l = (W_{l+1})ᵀ · δ_{l+1} ⊙ (∂a_l/∂s_l)
+
+Q: Once δ_l is known, what is ∂E/∂W_l?
+A: ∂E/∂W_l = δ_l · (a_{l−1})ᵀ — an outer product of the layer's δ with the previous layer's activations.
+
+Q: Why is the matrix formulation of backprop preferred in practice?
+A: It exploits fast BLAS-style matrix routines and GPU parallelism, which is essential for training at scale.
+
+Q: Mechanically, what causes vanishing/exploding gradients?
+A: Backprop multiplies many local derivatives via the chain rule across layers; if they are consistently <1 or >1, the product shrinks or grows *exponentially* with depth.
+
+Q: Why are vanishing/exploding gradients much more severe in deep networks than shallow ones?
+A: The exponential effect compounds per layer, so few-layer networks don't accumulate enough multiplications for it to dominate.
+
+Q: Two symptoms that point to a **vanishing** gradient during training?
+A: The model improves very slowly (or stalls early), and weights closer to the *input* layer barely change.
+
+Q: Two symptoms that point to an **exploding** gradient during training?
+A: Erratic / very large loss changes per update, and weights near the input growing huge or going NaN.
+
+Q: Why does ReLU mitigate the vanishing gradient problem?
+A: It saturates in only one direction; for positive inputs its derivative stays at 1 instead of shrinking like sigmoid/tanh.
+
+Q: Gradient clipping formula and what it preserves?
+A: g' = min(1, θ/‖g‖) · g — caps the gradient *norm* at θ while keeping g' aligned with the original direction of g.
+
+Q: Which pathology does gradient clipping target — vanishing or exploding — and which does it not?
+A: It targets **exploding** gradients; it does nothing for vanishing.
+
+Q: In the worked ANN example, after one backprop step the SE drops from 0.654 to 0.453. What does this confirm about the learning rate η = 0.05?
+A: It is small enough that the update moved the prediction toward the target without overshooting — i.e., the descent direction and step size were both reasonable.
